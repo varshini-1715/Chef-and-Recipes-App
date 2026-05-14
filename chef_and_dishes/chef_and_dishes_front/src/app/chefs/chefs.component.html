@@ -1,0 +1,26 @@
+<h2>Chefs List</h2>
+
+<input
+  type="text"
+  placeholder="Search chefs..."
+  [(ngModel)]="searchTerm"
+  (input)="filterChefs()"
+  class="search-box"
+/>
+
+<ul *ngIf="filteredChefs.length; else noChefs">
+  <li class="item" *ngFor="let chef of filteredChefs">
+    {{ chef.name }} - {{ chef.specialty }}
+    <button class="btn-delete" (click)="deleteChef(chef.id)">Delete</button>
+  </li>
+</ul>
+<ng-template #noChefs>
+  <p>No chefs found.</p>
+</ng-template>
+
+<h3>Add New Chef</h3>
+<form (submit)="addChef(); $event.preventDefault()">
+  <input [(ngModel)]="newChef.name" name="name" placeholder="Name" required />
+  <input [(ngModel)]="newChef.specialty" name="specialty" placeholder="Specialty" required />
+  <button type="submit" class="btn-add">Add Chef</button>
+</form>

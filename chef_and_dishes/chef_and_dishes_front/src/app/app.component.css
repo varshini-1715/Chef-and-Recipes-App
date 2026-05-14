@@ -1,0 +1,61 @@
+/* General page styling */
+:host {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafafa;
+  color: #333;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* Navigation bar styling */
+nav {
+  background-color: #34495e;
+  padding: 12px 20px;
+  border-radius: 6px;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+nav a {
+  color: #ecf0f1;
+  text-decoration: none;
+  margin-right: 16px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+  color: #1abc9c;
+  text-decoration: underline;
+}
+
+/* Separator between links */
+nav a:not(:last-child)::after {
+  content: "|";
+  color: #bdc3c7;
+  margin-left: 16px;
+}
+
+/* Router outlet grows to fill available space */
+router-outlet {
+  flex-grow: 1;
+  display: block;
+  margin-bottom: 40px;
+}
+
+/* Footer styling */
+footer {
+  text-align: center;
+  padding: 12px 0;
+  border-top: 1px solid #ddd;
+  color: #888;
+  font-size: 14px;
+  user-select: none;
+}
+footer a {
+  color: #1abc9c;
+  text-decoration: none;
+}

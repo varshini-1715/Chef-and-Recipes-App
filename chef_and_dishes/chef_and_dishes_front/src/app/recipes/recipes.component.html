@@ -1,0 +1,25 @@
+<h2>Recipes List</h2>
+
+<input
+  type="text"
+  placeholder="Search recipes..."
+  [(ngModel)]="searchTerm"
+  (input)="filterRecipes()"
+  class="search-box"
+/>
+
+<ul *ngIf="filteredRecipes.length; else noRecipes">
+  <li class="item" *ngFor="let recipe of filteredRecipes">
+    {{ recipe.name }}
+    <button class="btn-delete" (click)="deleteRecipe(recipe.id)">Delete</button>
+  </li>
+</ul>
+<ng-template #noRecipes>
+  <p>No recipes found.</p>
+</ng-template>
+
+<h3>Add New Recipe</h3>
+<form (submit)="addRecipe(); $event.preventDefault()">
+  <input [(ngModel)]="newRecipe.name" name="name" placeholder="Recipe Name" required />
+  <button type="submit" class="btn-add">Add Recipe</button>
+</form>

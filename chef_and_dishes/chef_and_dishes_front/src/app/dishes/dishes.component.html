@@ -1,0 +1,33 @@
+<h2>Dishes List</h2>
+
+<input
+  type="text"
+  placeholder="Search dishes..."
+  [(ngModel)]="searchTerm"
+  (input)="filterDishes()"
+  class="search-box"
+/>
+
+<ul *ngIf="filteredDishes.length; else noDishes">
+  <li class="item" *ngFor="let dish of filteredDishes">
+    <strong>{{ dish.name }}</strong> - {{ dish.type }}
+    <span class="recipe-label">Recipe: {{ getRecipeName(dish.recipeId) }}</span>
+    <button class="btn-delete" (click)="deleteDish(dish.id)">Delete</button>
+  </li>
+</ul>
+<ng-template #noDishes>
+  <p>No dishes found.</p>
+</ng-template>
+
+<h3>Add New Dish</h3>
+<form (submit)="addDish(); $event.preventDefault()">
+  <input [(ngModel)]="newDish.name" name="name" placeholder="Dish Name" required />
+  <input [(ngModel)]="newDish.type" name="type" placeholder="Type" required />
+
+  <select [(ngModel)]="newDish.recipeId" name="recipeId" required>
+    <option value="" disabled selected>Select recipe</option>
+    <option *ngFor="let recipe of recipes" [value]="recipe.id">{{ recipe.name }}</option>
+  </select>
+
+  <button type="submit" class="btn-add">Add Dish</button>
+</form>
